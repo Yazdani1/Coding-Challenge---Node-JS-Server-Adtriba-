@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-mongoose.connect(process.env.localdb,{
+
+mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-},(err)=>{
-    if(!err){
-        console.log("Database Connected")
-    }else{
-        console.log("We got an error"+err);
-    }
+})
+.then(() => {
+  console.log('Database connected');
+})
+.catch((error) => {
+  console.log('Error connecting to database:', error.message);
 });
+

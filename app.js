@@ -15,10 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use("/api",require("./router/user"));
-// app.use("/api",require("./router/ExpenseBook"));
-// app.use("/api",require("./router/ExpenseCategory"));
-// app.use("/api",require("./router/ExpenseList"));
+app.use("/api/v0",require("./routers/AdCampaign"));
+
 
 
 app.listen(port, (req, res) => {

@@ -47,13 +47,14 @@ exports.createAdCampaign = async (req, res) => {
       return res.status(422).json({ error: "please add optimisation_target" });
     }
 
+ 
     const adcampaignDetails = AdCampaign({
       ad_date,
       source,
       attributed_conversions,
       attributed_revenue,
       type,
-      spends,
+      spends, 
       partition_id,
       optimisation_target,
     });
@@ -66,6 +67,74 @@ exports.createAdCampaign = async (req, res) => {
     res.status(400).json({ error: "Something went wrong" });
   }
 };
+
+
+// exports.createAdCampaign = async (req, res) => {
+//   try {
+//     const {
+//       ad_date,
+//       source,
+//       attributed_conversions,
+//       attributed_revenue,
+//       type,
+//       spends,
+//       partition_id,
+//       optimisation_target,
+//     } = req.body;
+
+//     if (!ad_date) {
+//       return res.status(422).json({ error: "please add ad_date" });
+//     }
+
+//     if (!source) {
+//       return res.status(422).json({ error: "please add source" });
+//     }
+
+//     if (!attributed_conversions) {
+//       return res
+//         .status(422)
+//         .json({ error: "please add attributed_conversions" });
+//     }
+
+//     if (!attributed_revenue) {
+//       return res.status(422).json({ error: "please add attributed_revenue" });
+//     }
+
+//     if (!type) {
+//       return res.status(422).json({ error: "please add type" });
+//     }
+
+//     if (!spends) {
+//       return res.status(422).json({ error: "please add spends" });
+//     }
+
+//     if (!partition_id) {
+//       return res.status(422).json({ error: "please add partition_id" });
+//     }
+
+//     if (!optimisation_target) {
+//       return res.status(422).json({ error: "please add optimisation_target" });
+//     }
+
+//     const adcampaignDetails = AdCampaign({
+//       ad_date,
+//       source,
+//       attributed_conversions,
+//       attributed_revenue,
+//       type,
+//       spends,
+//       partition_id,
+//       optimisation_target,
+//     });
+
+//     const saveAdCampaign = await AdCampaign.create(adcampaignDetails);
+
+//     res.status(201).json(saveAdCampaign);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(400).json({ error: "Something went wrong" });
+//   }
+// };
 
 // To get adcampaign
 

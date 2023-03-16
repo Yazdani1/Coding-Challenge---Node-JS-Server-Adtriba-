@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types;
 
 var adCampaignSchema = mongoose.Schema({
-
   ad_date: {
     type: Date,
     required: true,
   },
-  
+
   source: {
     type: String,
     required: true,
@@ -27,8 +26,13 @@ var adCampaignSchema = mongoose.Schema({
   },
   spends: {
     type: Number,
-    required: true,
+    get: (v) => parseFloat(v).toFixed(2),
+    set: (v) => parseFloat(v),
   },
+  // spends: {
+  //   type: Number,
+  //   required: true,
+  // },
 
   partition_id: {
     type: String,

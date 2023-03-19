@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/v0",require("./routers/AdCampaign"));
 
+app.use("/api/v0",require("./routers/ExcelFileData"));
 
 
 app.listen(port, (req, res) => {

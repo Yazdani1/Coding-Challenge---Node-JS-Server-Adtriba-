@@ -135,7 +135,11 @@ exports.getAllVisitorList = async (req, res) => {
   try {
     const allVisitorLists = await VisitorCounter.find();
 
-    res.status(200).json(allVisitorLists);
+    const totlaViewsCount = await VisitorCounter.countDocuments();
+
+
+
+    res.status(200).json({allVisitorLists,totlaViewsCount});
   } catch (error) {
     res.status(400).json({ error: "Something went wrong" });
   }

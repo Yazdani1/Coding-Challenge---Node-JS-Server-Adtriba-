@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
 
-const {createAdCampaign,getAdCampaign,deleteAdCampaign} = require("../controllers/AdCampaign");
+const {createAdCampaign,getAdCampaign,deleteAdCampaign,getAllVisitorList} = require("../controllers/AdCampaign");
 
 
 /**
@@ -24,5 +24,11 @@ router.get("/ad-capmaign-lists",getAdCampaign)
  */
 
 router.delete("/delete-add-campaign/:id",deleteAdCampaign);
+
+/**
+ * To load all the visitor lists
+ */
+
+router.get("/all-visitor-list",getAllVisitorList);
 
 module.exports = router;

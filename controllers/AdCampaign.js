@@ -67,7 +67,7 @@ exports.createAdCampaign = async (req, res) => {
     res.status(201).json(saveAdCampaign);
   } catch (error) {
     console.log(error);
-    res.status(400).json({ error: "Something went wrong" });
+    res.status(500).json({ error: "Something went wrong" });
   }
 };
 
@@ -102,17 +102,19 @@ exports.getAdCampaign = async (req, res) => {
     // Get user's IP address
     // const ip = req.connection.remoteAddress;
 
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    // const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-    // Use ipdata.co to get the user's location
-    const response = await axios.get(`https://api.ipdata.co/${ip}?api-key=29ed79985902e87f84743637b25e340235bfaaaa7a6191b57df0a843`);
+    // // Use ipdata.co to get the user's location
+    // const response = await axios.get(`https://api.ipdata.co/${ip}?api-key=29ed79985902e87f84743637b25e340235bfaaaa7a6191b57df0a843`);
 
     // Create a new VisitorCount document
+
+
     const visitorDetails = VisitorCounter({
       views: 1,
       date: new Date(),
-      country: response.data.country,
-      city: response.data.city,
+      // country: response.data.country,
+      // city: response.data.city,
     });
 
     const visitorCount = await VisitorCounter.create(visitorDetails);
@@ -120,7 +122,7 @@ exports.getAdCampaign = async (req, res) => {
     res.status(200).json({ allAdCampaign, adCampByMonth, visitorCount });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ error: "Something went wrong" });
+    res.status(500).json({ error: "Something went wrong" });
   }
 };
 
@@ -141,7 +143,7 @@ exports.getAllVisitorList = async (req, res) => {
 
     res.status(200).json({allVisitorLists,totlaViewsCount});
   } catch (error) {
-    res.status(400).json({ error: "Something went wrong" });
+    res.status(500).json({ error: "Something went wrong" });
   }
 };
 
@@ -161,6 +163,6 @@ exports.deleteAdCampaign = async (req, res) => {
 
     res.status(200).json(deleteAdCampaign);
   } catch (error) {
-    res.status(400).json({ error: "Something went wrong" });
+    res.status(500).json({ error: "Something went wrong" });
   }
 };
